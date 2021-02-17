@@ -1,0 +1,9 @@
+name: Launchify
+main: me.finn.launchify.Launchify
+version: 1.0.0
+author: Finn
+api-version: 1.13
+
+commands:
+  launchify:
+    aliases: [l, lf]
