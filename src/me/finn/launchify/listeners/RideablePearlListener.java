@@ -34,6 +34,7 @@ public class RideablePearlListener implements Listener {
 
                     pearl.setVelocity(player.getLocation().getDirection());
                     pearl.setPassenger(player);
+                    player.getInventory().remove(Material.ENDER_PEARL);
                 }
             }
         }

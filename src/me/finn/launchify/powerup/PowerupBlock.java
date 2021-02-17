@@ -20,7 +20,7 @@ public class PowerupBlock {
     private Powerup powerup;
     private Location location;
     private Integer createdAt;
-    private Boolean despawnable;
+    private Boolean despawnable = true;
 
     public PowerupBlock(Game game, Location location, Powerup powerup) {
         this.location = location;

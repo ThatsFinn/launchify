@@ -38,8 +38,10 @@ public class PowerupFrenzy extends Event {
 
     @Override
     public void runTick(Integer timeSinceExecution) {
-        for (int i = 0; i < 15; i++) {
-            game.getPlugin().pm.spawnPowerup(game);
+        if (timeSinceExecution < 30) {
+            for (int i = 0; i < 15; i++) {
+                game.getPlugin().pm.spawnPowerup(game);
+            }
         }
 
         if (timeSinceExecution == 0) {
