@@ -1,10 +1,7 @@
 package me.finn.launchify.managers;
 
 import me.finn.launchify.event.Event;
-import me.finn.launchify.event.events.GlowingEvent;
-import me.finn.launchify.event.events.MoonEvent;
-import me.finn.launchify.event.events.PowerupFrenzy;
-import me.finn.launchify.event.events.RodOnlyEvent;
+import me.finn.launchify.event.events.*;
 import me.finn.launchify.game.Game;
 
 import java.lang.reflect.InvocationTargetException;
@@ -19,10 +16,11 @@ public class EventManager {
 
     public EventManager() {
         // register events in list
-        events.add(new GlowingEvent(null));
-        events.add(new PowerupFrenzy(null));
-        events.add(new MoonEvent(null));
-        events.add(new RodOnlyEvent(null));
+        // events.add(new GlowingEvent(null));
+        // events.add(new PowerupFrenzy(null));
+        //events.add(new MoonEvent(null));
+        //events.add(new RodOnlyEvent(null));
+        events.add(new TNTRainEvent(null));
     }
 
     public List<Event> getRandomEventSequence(Game game, Integer size) {

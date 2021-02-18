@@ -5,6 +5,7 @@ import me.finn.launchify.game.Game;
 import me.finn.launchify.game.GameState;
 import me.finn.launchify.game.GameStateType;
 import me.finn.launchify.game.LaunchPlayer;
+import me.finn.launchify.managers.LauncherManager;
 import me.finn.launchify.utils.CustomRunnable;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -98,31 +99,7 @@ public class GracePeriodState extends GameState {
         Player p = e.getPlayer();
         if (pl.gm.getGameFromPlayer(p) == game) {
             if (pl.gm.getLaunchPlayerFromPlayer(p) != null && pl.gm.getLaunchPlayerFromPlayer(p).isAlive()) {
-                if (e.getTo().getBlock().getRelative(BlockFace.DOWN).getType() == Material.LIME_CONCRETE) {
-                    p.setVelocity(p.getLocation().getDirection().multiply(0.75));
-                    p.setVelocity(new Vector(p.getVelocity().getX(), 1.75D, p.getVelocity().getZ()));
-                    pl.su.launch(p.getLocation());
-                }
-                if (e.getTo().getBlock().getRelative(BlockFace.DOWN).getType() == Material.GREEN_CONCRETE) {
-                    e.getPlayer().setVelocity(e.getPlayer().getLocation().getDirection().multiply(1.8));
-                    e.getPlayer().setVelocity(new Vector(e.getPlayer().getVelocity().getX(), 1.1D, e.getPlayer().getVelocity().getZ()));
-                    pl.su.launch(p.getLocation());
-                }
-                if (e.getTo().getBlock().getRelative(BlockFace.DOWN).getType() == Material.YELLOW_CONCRETE) {
-                    e.getPlayer().setVelocity(e.getPlayer().getLocation().getDirection().multiply(3.5));
-                    e.getPlayer().setVelocity(new Vector(e.getPlayer().getVelocity().getX(), 1.D, e.getPlayer().getVelocity().getZ()));
-                    pl.su.launch(p.getLocation());
-                }
-                if (e.getTo().getBlock().getRelative(BlockFace.DOWN).getType() == Material.RED_CONCRETE) {
-                    e.getPlayer().setVelocity(e.getPlayer().getLocation().getDirection().multiply(0.75));
-                    e.getPlayer().setVelocity(new Vector(e.getPlayer().getVelocity().getX(), 2.5D, e.getPlayer().getVelocity().getZ()));
-                    pl.su.launch(p.getLocation());
-                }
-                if (e.getTo().getBlock().getRelative(BlockFace.DOWN).getType() == Material.BLUE_CONCRETE) {
-                    e.getPlayer().setVelocity(e.getPlayer().getLocation().getDirection().multiply(0.3));
-                    e.getPlayer().setVelocity(new Vector(e.getPlayer().getVelocity().getX(), 0.8D, e.getPlayer().getVelocity().getZ()));
-                    pl.su.launch(p.getLocation());
-                }
+                pl.lm.handleLaunchers(e);
             }
         }
     }

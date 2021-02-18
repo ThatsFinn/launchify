@@ -215,9 +215,14 @@ public class Game {
                 killer.setKills(killer.getKills() + 1);
                 break;
             case TNT:
-                message = "&c⚐&f " + target.getPlayer().getName() + "&7" + pl.mu.getRandomMessage(DeathReason.TNT) + "&f" + killer.getPlayer().getName();
-                killer.setKills(killer.getKills() + 1);
-                break;
+                if (killer == null) {
+                    message = "&c⚐&f " + target.getPlayer().getName() + "&7" + pl.mu.getRandomMessage(DeathReason.TNT);
+                    break;
+                } else {
+                    message = "&c⚐&f " + target.getPlayer().getName() + "&7" + pl.mu.getRandomMessage(DeathReason.TNT_PLAYER) + "&f" + killer.getPlayer().getName();
+                    killer.setKills(killer.getKills() + 1);
+                    break;
+                }
         }
 
         broadcastMessage(Colorize.color(message));

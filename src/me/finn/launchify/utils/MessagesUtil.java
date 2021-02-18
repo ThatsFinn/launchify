@@ -3,14 +3,21 @@ package me.finn.launchify.utils;
 import me.finn.launchify.game.DeathReason;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class MessagesUtil {
 
+    // player kills
     public ArrayList<String> plm = new ArrayList<>();
+    // void without credit
     public ArrayList<String> vom = new ArrayList<>();
+    // void kills with credit
     public ArrayList<String> vkm = new ArrayList<>();
+    // tnt without credit
     public ArrayList<String> tnt = new ArrayList<>();
+    // tnt with credit
+    public ArrayList<String> tnp = new ArrayList<>();
 
     public MessagesUtil() {
         // PLAYER MESSAGES
@@ -45,8 +52,8 @@ public class MessagesUtil {
         vom.add(" didn't have their inner health plus today!");
         vom.add(" thought they could fly..");
         vom.add(" missed a parkour jump");
-        vom.add(" was sent into the shadow realm.");
-        vom.add(" got pushed onto the spherical side of the northern pole located at the left side of a pink elephant weighing in at about 20 papers.");
+        vom.add(" was sent into the shadow realm");
+        vom.add(" got pushed onto the spherical side of the northern pole located at the left side of a pink elephant weighing in at about 20 papers");
 
         // VOID KNOCK MESSAGES
         vkm.add(" was hit into the void by ");
@@ -54,34 +61,46 @@ public class MessagesUtil {
         vkm.add(" was pushed a little too far by ");
         vkm.add(" got launched into the void by ");
 
+        // TNT NO CREDIT MESSAGE
+        tnt.add(" was rained on from above");
+        tnt.add(" didn't escape in time");
+        tnt.add(" was exploded by the console");
+        tnt.add(" cheaped out on their power supply");
+        tnt.add(" was exploded");
+        tnt.add(" got blown into pieces");
+        tnt.add(" forgot to run...");
+
         // TNT MESSAGES
-        tnt.add(" got exploded by ");
-        tnt.add(" was detonated by ");
-        tnt.add(" failed to diffuse the bomb planted by ");
-        tnt.add(" lost to terrorist ");
-        tnt.add(" cut the wrong wire of a bomb made by ");
+        tnp.add(" got exploded by ");
+        tnp.add(" was detonated by ");
+        tnp.add(" failed to diffuse the bomb planted by ");
+        tnp.add(" lost to terrorist ");
+        tnp.add(" cut the wrong wire of a bomb made by ");
+        tnp.add(" didn't escape in time from ");
     }
 
     public String getRandomMessage(DeathReason reason) {
         Integer index;
         Random rand = new Random();
+        List<String> messages = null;
         if (reason == DeathReason.BOW) {
-            index = rand.nextInt(plm.size());
-            return plm.get(index);
+            messages = plm;
+        } else if (reason == DeathReason.VOID) {
+            messages = vom;
+        } else if (reason == DeathReason.KNOCK_VOID) {
+            messages = vkm;
+        } else if (reason == DeathReason.TNT) {
+            messages = tnt;
+        } else if (reason == DeathReason.TNT_PLAYER) {
+            messages = tnp;
         }
-        if (reason == DeathReason.VOID) {
-            index = rand.nextInt(vom.size());
-            return vom.get(index);
+
+        if (messages == null) {
+            return null;
+        } else {
+            index = rand.nextInt(messages.size());
+            return messages.get(index);
         }
-        if (reason == DeathReason.KNOCK_VOID) {
-            index = rand.nextInt(vkm.size());
-            return vkm.get(index);
-        }
-        if (reason == DeathReason.TNT) {
-            index = rand.nextInt(tnt.size());
-            return tnt.get(index);
-        }
-        return null;
     }
 
 }

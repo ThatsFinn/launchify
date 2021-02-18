@@ -33,6 +33,7 @@ public class Launchify extends JavaPlugin {
     public SpawnLocationAdder sla = new SpawnLocationAdder(this);
     public PowerupManager pm = new PowerupManager(this);
     public EventManager em = new EventManager();
+    public LauncherManager lm = new LauncherManager(this);
 
     public SoundUtil su = new SoundUtil(this);
 
@@ -83,13 +84,12 @@ public class Launchify extends JavaPlugin {
 
         getServer().getPluginManager().registerEvents(new AntiGriefListener(this), this);
         getServer().getPluginManager().registerEvents(new WorldChangeListener(this), this);
-        getServer().getPluginManager().registerEvents(new LauncherStupidListener(this), this);
-
         getServer().getPluginManager().registerEvents(new RideablePearlListener(this), this);
-        getServer().getPluginManager().registerEvents(new ThrowableTNTListener(this), this);
+        getServer().getPluginManager().registerEvents(new TNTListener(this), this);
 
         getServer().getPluginManager().registerEvents(aswm, this);
         getServer().getPluginManager().registerEvents(sla, this);
+        getServer().getPluginManager().registerEvents(lm, this);
     }
 
     private void registerRunnables() {

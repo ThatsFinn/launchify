@@ -26,12 +26,12 @@ import org.bukkit.util.Vector;
 import java.util.*;
 import java.util.logging.Level;
 
-public class ThrowableTNTListener implements Listener {
+public class TNTListener implements Listener {
 
     private Launchify plugin;
     private HashMap<Integer, UUID> tntIdentification = new HashMap<>();
 
-    public ThrowableTNTListener(Launchify plugin) {
+    public TNTListener(Launchify plugin) {
         this.plugin = plugin;
     }
 
@@ -73,11 +73,38 @@ public class ThrowableTNTListener implements Listener {
                         LaunchPlayer targetLP = game.getLaunchPlayerFromPlayer(target);
 
                         if (damagerLP != null && targetLP != null && damagerLP != targetLP) {
-                            game.kill(game.getLaunchPlayerFromPlayer(target), game.getLaunchPlayerFromPlayer(p), DeathReason.TNT);
+                            if (targetLP.isAlive()) {
+                                game.kill(game.getLaunchPlayerFromPlayer(target), game.getLaunchPlayerFromPlayer(p), DeathReason.TNT);
+                            }
                         }
                     }
                 }
              }
+        }
+
+        if (e.getEntity() instanceof TNTPrimed) {
+            if (e.getEntity().getCustomName() != null) {
+                if (e.getEntity().getCustomName().equals("tnt_rain_tnt")) {
+                    e.blockList().clear();
+
+                    for (Entity entity : getNearbyEntities(e.getLocation(), 7)) {
+                        if (entity instanceof Player) {
+                            Player target = (Player) entity;
+                            Game game = plugin.gm.getGameFromPlayer(target);
+
+                            if (game != null) {
+                                LaunchPlayer targetLP = game.getLaunchPlayerFromPlayer(target);
+
+                                if (targetLP != null) {
+                                    if (targetLP.isAlive()) {
+                                        game.kill(game.getLaunchPlayerFromPlayer(target), null, DeathReason.TNT);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 

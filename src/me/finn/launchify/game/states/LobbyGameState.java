@@ -22,7 +22,7 @@ public class LobbyGameState extends GameState {
     @Override
     public void onEnable(Launchify pl) {
         // generate event list
-        game.getEvents().addAll(pl.em.getRandomEventSequence(game, 4));
+        game.getEvents().addAll(pl.em.getRandomEventSequence(game, 1));
     }
 
     @EventHandler
