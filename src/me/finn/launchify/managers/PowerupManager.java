@@ -1,6 +1,7 @@
 package me.finn.launchify.managers;
 
 import me.finn.launchify.Launchify;
+import me.finn.launchify.arena.LaunchArena;
 import me.finn.launchify.game.Game;
 import me.finn.launchify.powerup.*;
 import org.bukkit.Location;
@@ -25,6 +26,7 @@ public class PowerupManager {
         powerups.add(new SpeedPowerup());
         powerups.add(new InvisibilityPowerup());
         powerups.add(new PearlPowerup());
+        powerups.add(new ThrowableTNTPowerup());
     }
 
     public Powerup getRandomPowerup() {
@@ -42,6 +44,14 @@ public class PowerupManager {
 
         PowerupBlock pb = new PowerupBlock(game, location, getRandomPowerup());
         game.getPowerups().add(pb);
+    }
+
+    public List<Block> getArenaSpawnable(LaunchArena arena) {
+        List<Block> blocks = new ArrayList<>();
+        for (Location spawn : arena.getSpawns()) {
+            blocks.addAll(getSpawnable(spawn, 15, 8, 100, false));
+        }
+        return blocks;
     }
 
     public List<Block> getSpawnable(Location loc, Integer horizontal, Integer vertical, Integer heightChecks, boolean average) {

@@ -153,9 +153,6 @@ public class Game {
             if (timeLeft > 0) {
                 timeLeft--;
             }
-
-
-
         }
         updateScoreboards();
     }
@@ -215,6 +212,10 @@ public class Game {
                 break;
             case KNOCK_VOID:
                 message = "&c⚐&f " + target.getPlayer().getName() + "&7" + pl.mu.getRandomMessage(DeathReason.KNOCK_VOID) + "&f" + killer.getPlayer().getName();
+                killer.setKills(killer.getKills() + 1);
+                break;
+            case TNT:
+                message = "&c⚐&f " + target.getPlayer().getName() + "&7" + pl.mu.getRandomMessage(DeathReason.TNT) + "&f" + killer.getPlayer().getName();
                 killer.setKills(killer.getKills() + 1);
                 break;
         }

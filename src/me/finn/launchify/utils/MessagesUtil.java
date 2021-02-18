@@ -10,6 +10,7 @@ public class MessagesUtil {
     public ArrayList<String> plm = new ArrayList<>();
     public ArrayList<String> vom = new ArrayList<>();
     public ArrayList<String> vkm = new ArrayList<>();
+    public ArrayList<String> tnt = new ArrayList<>();
 
     public MessagesUtil() {
         // PLAYER MESSAGES
@@ -50,6 +51,15 @@ public class MessagesUtil {
         // VOID KNOCK MESSAGES
         vkm.add(" was hit into the void by ");
         vkm.add(" got knocked into the void by ");
+        vkm.add(" was pushed a little too far by ");
+        vkm.add(" got launched into the void by ");
+
+        // TNT MESSAGES
+        tnt.add(" got exploded by ");
+        tnt.add(" was detonated by ");
+        tnt.add(" failed to diffuse the bomb planted by ");
+        tnt.add(" lost to terrorist ");
+        tnt.add(" cut the wrong wire of a bomb made by ");
     }
 
     public String getRandomMessage(DeathReason reason) {
@@ -66,6 +76,10 @@ public class MessagesUtil {
         if (reason == DeathReason.KNOCK_VOID) {
             index = rand.nextInt(vkm.size());
             return vkm.get(index);
+        }
+        if (reason == DeathReason.TNT) {
+            index = rand.nextInt(tnt.size());
+            return tnt.get(index);
         }
         return null;
     }

@@ -4,10 +4,7 @@ import me.finn.launchify.arena.LaunchArena;
 import me.finn.launchify.commands.LaunchifyCommand;
 import me.finn.launchify.guisystem.GUIListener;
 import me.finn.launchify.guisystem.PlayerMenuUtility;
-import me.finn.launchify.listeners.AntiGriefListener;
-import me.finn.launchify.listeners.LauncherStupidListener;
-import me.finn.launchify.listeners.RideablePearlListener;
-import me.finn.launchify.listeners.WorldChangeListener;
+import me.finn.launchify.listeners.*;
 import me.finn.launchify.managers.*;
 import me.finn.launchify.powerup.PowerupBlock;
 import me.finn.launchify.utils.Colorize;
@@ -86,10 +83,10 @@ public class Launchify extends JavaPlugin {
 
         getServer().getPluginManager().registerEvents(new AntiGriefListener(this), this);
         getServer().getPluginManager().registerEvents(new WorldChangeListener(this), this);
-
         getServer().getPluginManager().registerEvents(new LauncherStupidListener(this), this);
 
         getServer().getPluginManager().registerEvents(new RideablePearlListener(this), this);
+        getServer().getPluginManager().registerEvents(new ThrowableTNTListener(this), this);
 
         getServer().getPluginManager().registerEvents(aswm, this);
         getServer().getPluginManager().registerEvents(sla, this);
