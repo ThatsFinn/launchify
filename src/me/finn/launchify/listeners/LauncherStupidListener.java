@@ -21,9 +21,8 @@ public class LauncherStupidListener implements Listener {
     @EventHandler
     public void onMove(PlayerMoveEvent e) {
         Player p = e.getPlayer();
-        if (p.getName().equalsIgnoreCase("Wiphy")
-                || p.getName().equalsIgnoreCase("DragonDomenic")
-                || p.getName().equalsIgnoreCase("Mega_Head")) {
+        if (p.getName().equalsIgnoreCase("Peligra")
+                || p.getName().equalsIgnoreCase("DragonDomenic")) {
             if (e.getTo().getBlock().getRelative(BlockFace.DOWN).getType() == Material.LIME_CONCRETE) {
                 p.setVelocity(p.getLocation().getDirection().multiply(0.75));
                 p.setVelocity(new Vector(p.getVelocity().getX(), 1.75D, p.getVelocity().getZ()));

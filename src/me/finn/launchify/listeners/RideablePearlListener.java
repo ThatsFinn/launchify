@@ -34,7 +34,8 @@ public class RideablePearlListener implements Listener {
 
                     pearl.setVelocity(player.getLocation().getDirection());
                     pearl.setPassenger(player);
-                    player.getInventory().remove(Material.ENDER_PEARL);
+                    player.getInventory().getItemInMainHand().setAmount(
+                            player.getInventory().getItemInMainHand().getAmount() - 1);
                 }
             }
         }
@@ -63,13 +64,7 @@ public class RideablePearlListener implements Listener {
     }
 
     public boolean isElligable(Player p) {
-        if (plugin.gm.getGameFromPlayer(p) != null && plugin.gm.getGameFromPlayer(p).getState().getType() == GameStateType.ACTIVE) {
-            return true;
-        } else if (p.getName().equalsIgnoreCase("Wiphy") || p.getName().equalsIgnoreCase("DragonDomenic")) {
-            return true;
-        } else {
-            return false;
-        }
+        return plugin.gm.getGameFromPlayer(p) != null && plugin.gm.getGameFromPlayer(p).getState().getType() == GameStateType.ACTIVE;
     }
 
 }

@@ -127,7 +127,7 @@ public class Game {
         clearEffects(p);
         p.spigot().sendMessage(ChatMessageType.ACTION_BAR,
                 TextComponent.fromLegacyText(Colorize.color("&fYou have been removed from &d" + arena.getDisplayName())));
-        if (!p.getName().equalsIgnoreCase("Wiphy") && !p.getName().equalsIgnoreCase("DragonDomenic")) {
+        if (!p.getName().equalsIgnoreCase("Peligra") && !p.getName().equalsIgnoreCase("DragonDomenic")) {
             pl.getServer().dispatchCommand(p, "hub");
         }
         updateScoreboards();
