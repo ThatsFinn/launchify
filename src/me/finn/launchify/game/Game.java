@@ -365,6 +365,7 @@ public class Game {
     public void resetData() {
         timeLeft = 480;
         paused = false;
+        eventIndex = -1;
         players.clear();
         deathTimes.clear();
         powerups.clear();
