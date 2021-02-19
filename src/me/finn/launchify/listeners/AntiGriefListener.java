@@ -1,18 +1,36 @@
 package me.finn.launchify.listeners;
 
 import me.finn.launchify.Launchify;
+import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AntiGriefListener implements Listener {
 
     private Launchify pl;
 
+    private List<Material> blacklistedInteract = new ArrayList<>();
+
     public AntiGriefListener(Launchify pl) {
         this.pl = pl;
+
+        // add blacklisted blocks here for interaction
+        blacklistedInteract.add(Material.CHEST);
+        blacklistedInteract.add(Material.FURNACE);
+        blacklistedInteract.add(Material.BARREL);
+        blacklistedInteract.add(Material.CRAFTING_TABLE);
+        blacklistedInteract.add(Material.HOPPER);
+        blacklistedInteract.add(Material.ANVIL);
+        blacklistedInteract.add(Material.LEVER);
     }
 
     @EventHandler
@@ -36,6 +54,16 @@ public class AntiGriefListener implements Listener {
                 return;
             }
             e.setCancelled(true);
+        }
+    }
+
+    @EventHandler
+    public void onInteract(PlayerInteractEvent e) {
+        if (e.getClickedBlock() != null) {
+            Block b = e.getClickedBlock();
+            if (blacklistedInteract.contains(b.getType())) {
+                e.setCancelled(true);
+            }
         }
     }
 
