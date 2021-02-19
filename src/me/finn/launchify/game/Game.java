@@ -13,6 +13,7 @@ import me.finn.launchify.utils.GenUtils;
 import me.finn.launchify.utils.ItemBuilder;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
+import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -24,6 +25,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 
 import java.util.*;
+import java.util.logging.Level;
 
 
 public class Game {
@@ -53,6 +55,10 @@ public class Game {
         this.state = state;
         state.onEnable(pl);
         updateScoreboards();
+
+        if (arena != null) {
+            Bukkit.getLogger().log(Level.INFO, "[LAUNCHIFY STATE UPDATE] Game in " + arena.getName() + " changed to state " + state.getType().name());
+        }
     }
 
     public void setArena(LaunchArena arena) {

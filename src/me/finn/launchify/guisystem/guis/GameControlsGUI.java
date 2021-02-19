@@ -98,7 +98,29 @@ public class GameControlsGUI extends GUI {
                         .plugin(pl)
                         .onComplete((completedPlayer, string) -> {
                             if (!GenUtils.isNumeric(string)) {
-                                return AnvilGUI.Response.text("That is not a valid number!");
+                                if (string.contains("m") && string.split("m").length == 2) {
+                                    String[] split = string.split("m");
+                                    String minutes = split[0].replace("m", "");
+                                    minutes = minutes.replace(" ", "");
+
+                                    String seconds = split[1].replace("s", "");
+                                    seconds = seconds.replace(" ", "");
+
+                                    if (GenUtils.isNumeric(minutes) && GenUtils.isNumeric(seconds)) {
+                                        int mins = Integer.parseInt(minutes);
+                                        int secs = Integer.parseInt(seconds);
+
+                                        Integer total = (mins * 60) + secs;
+
+                                        playerMenuUtility.getGame().setTimeLeft(total);
+                                        pl.su.success(completedPlayer.getLocation());
+                                        return AnvilGUI.Response.close();
+                                    } else {
+                                        return AnvilGUI.Response.text("That is not a valid input!");
+                                    }
+                                } else {
+                                    return AnvilGUI.Response.text("That is not a valid input!");
+                                }
                             }
 
                             playerMenuUtility.getGame().setTimeLeft(Integer.valueOf(string));
