@@ -59,10 +59,16 @@ public class AntiGriefListener implements Listener {
 
     @EventHandler
     public void onInteract(PlayerInteractEvent e) {
-        if (e.getClickedBlock() != null) {
-            Block b = e.getClickedBlock();
-            if (blacklistedInteract.contains(b.getType())) {
-                e.setCancelled(true);
+        Player p = e.getPlayer();
+
+        if (pl.gm.getGameFromPlayer(p) != null) {
+            if (!p.hasPermission("bowlaunch.bypass.grief")) {
+                if (e.getClickedBlock() != null) {
+                    Block b = e.getClickedBlock();
+                    if (blacklistedInteract.contains(b.getType())) {
+                        e.setCancelled(true);
+                    }
+                }
             }
         }
     }
