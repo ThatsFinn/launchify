@@ -36,7 +36,7 @@ public class ActiveGameState extends GameState {
 
     private Launchify pl;
     private Game game;
-    private Integer spawnableSize = 0;
+    private Integer spawnableSize = null;
     private Integer executionTimeOfLastEvent = 0;
 
     public ActiveGameState(Game game, Launchify pl) {
@@ -102,11 +102,16 @@ public class ActiveGameState extends GameState {
             }
         }
 
-        // power-up spawning stuff
-        Integer spawningThingy = 2;
+        if (game.getTimeLeft() % 6 == 0) { // todo: calculate rate of spawning from spawnable area
+            if (spawnableSize == null) {
+                spawnableSize = pl.pm.getArenaSpawnable(game.getArena()).size();
+            }
 
-        if (game.getTimeLeft() % spawningThingy == 0) { // todo: calculate rate of spawning from spawnable area
-            pl.pm.spawnPowerup(game);
+            int spawnRate = spawnableSize/500;
+
+            for (int i = 0; i < spawnRate; i++) {
+                pl.pm.spawnPowerup(game);
+            }
         }
 
         Iterator pwrItr = game.getPowerups().iterator();

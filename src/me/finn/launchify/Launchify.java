@@ -86,6 +86,7 @@ public class Launchify extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new WorldChangeListener(this), this);
         getServer().getPluginManager().registerEvents(new RideablePearlListener(this), this);
         getServer().getPluginManager().registerEvents(new TNTListener(this), this);
+        getServer().getPluginManager().registerEvents(new LightningRodListener(this), this);
 
         getServer().getPluginManager().registerEvents(aswm, this);
         getServer().getPluginManager().registerEvents(sla, this);

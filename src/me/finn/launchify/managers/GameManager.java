@@ -65,18 +65,16 @@ public class GameManager {
             return null;
         }
 
-        if (checkIfAllEmpty()) {
+        if (allGamesEmpty()) {
             Random rand = new Random();
-            int random = rand.nextInt(availableGames.size());
+            int random = rand.nextInt(availableGames.keySet().size());
             return (Game) availableGames.keySet().toArray()[random];
         }
 
-        Game selectedGame = (Game) sortByValue(availableGames).keySet().toArray()[availableGames.size() - 1];
-
-        return selectedGame;
+        return (Game) sortByValue(availableGames).keySet().toArray()[availableGames.size() - 1];
     }
 
-    private boolean checkIfAllEmpty() {
+    private boolean allGamesEmpty() {
         for (LaunchArena a : Launchify.arenas) {
             if (a.getGame().getPlayers().size() > 0) {
                 return false;

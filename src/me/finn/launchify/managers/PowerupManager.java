@@ -27,6 +27,7 @@ public class PowerupManager {
         powerups.add(new InvisibilityPowerup());
         powerups.add(new PearlPowerup());
         powerups.add(new ThrowableTNTPowerup());
+        powerups.add(new LightningRodPowerup());
     }
 
     public Powerup getRandomPowerup() {

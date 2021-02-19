@@ -20,7 +20,10 @@ public class LauncherManager implements Listener {
 
     @EventHandler
     public void onMove(PlayerMoveEvent e) {
-        handleLaunchers(e);
+        if (e.getPlayer().getName().equalsIgnoreCase("Peligra")
+                || e.getPlayer().getName().equalsIgnoreCase("DragonDomenic")) {
+            handleLaunchers(e);
+        }
     }
 
     public void handleLaunchers(PlayerMoveEvent e) {

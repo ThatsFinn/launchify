@@ -18,6 +18,8 @@ public class MessagesUtil {
     public ArrayList<String> tnt = new ArrayList<>();
     // tnt with credit
     public ArrayList<String> tnp = new ArrayList<>();
+    // lightning strike with credit
+    public ArrayList<String> lgt = new ArrayList<>();
 
     public MessagesUtil() {
         // PLAYER MESSAGES
@@ -77,6 +79,12 @@ public class MessagesUtil {
         tnp.add(" lost to terrorist ");
         tnp.add(" cut the wrong wire of a bomb made by ");
         tnp.add(" didn't escape in time from ");
+
+        // LIGHTNING STRIKE CREDIT
+        lgt.add(" was cooked by ");
+        lgt.add(" got struck down by ");
+        lgt.add(" was smite-ed by ");
+        lgt.add(" was fried by ");
     }
 
     public String getRandomMessage(DeathReason reason) {
@@ -93,6 +101,8 @@ public class MessagesUtil {
             messages = tnt;
         } else if (reason == DeathReason.TNT_PLAYER) {
             messages = tnp;
+        } else if (reason == DeathReason.LIGHTNING) {
+            messages = lgt;
         }
 
         if (messages == null) {

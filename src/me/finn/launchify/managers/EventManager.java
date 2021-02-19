@@ -16,10 +16,10 @@ public class EventManager {
 
     public EventManager() {
         // register events in list
-        // events.add(new GlowingEvent(null));
-        // events.add(new PowerupFrenzy(null));
-        //events.add(new MoonEvent(null));
-        //events.add(new RodOnlyEvent(null));
+        events.add(new GlowingEvent(null));
+        events.add(new PowerupFrenzy(null));
+        events.add(new MoonEvent(null));
+        events.add(new RodOnlyEvent(null));
         events.add(new TNTRainEvent(null));
     }
 

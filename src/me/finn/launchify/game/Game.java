@@ -223,6 +223,10 @@ public class Game {
                     killer.setKills(killer.getKills() + 1);
                     break;
                 }
+            case LIGHTNING:
+                message = "&c⚐&f " + target.getPlayer().getName() + "&7" + pl.mu.getRandomMessage(DeathReason.LIGHTNING) + "&f" + killer.getPlayer().getName();
+                killer.setKills(killer.getKills() + 1);
+                break;
         }
 
         broadcastMessage(Colorize.color(message));
