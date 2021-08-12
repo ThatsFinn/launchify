@@ -21,7 +21,7 @@ public class LauncherManager implements Listener {
     @EventHandler
     public void onMove(PlayerMoveEvent e) {
         if (e.getPlayer().getName().equalsIgnoreCase("Peligra")
-                || e.getPlayer().getName().equalsIgnoreCase("DragonDomenic")) {
+                || e.getPlayer().getName().equalsIgnoreCase("BlitzTrix")) {
             handleLaunchers(e);
         }
     }
@@ -51,6 +51,11 @@ public class LauncherManager implements Listener {
         if (e.getTo().getBlock().getRelative(BlockFace.DOWN).getType() == Material.BLUE_CONCRETE) {
             e.getPlayer().setVelocity(e.getPlayer().getLocation().getDirection().multiply(0.3));
             e.getPlayer().setVelocity(new Vector(e.getPlayer().getVelocity().getX(), 0.8D, e.getPlayer().getVelocity().getZ()));
+            pl.su.launch(p.getLocation());
+        }
+        if (e.getTo().getBlock().getRelative(BlockFace.DOWN).getType() == Material.LIGHT_BLUE_CONCRETE) {
+            e.getPlayer().setVelocity(e.getPlayer().getLocation().getDirection().multiply(2D));
+            e.getPlayer().setVelocity(new Vector(e.getPlayer().getVelocity().getX(), 2D, e.getPlayer().getVelocity().getZ()));
             pl.su.launch(p.getLocation());
         }
     }
